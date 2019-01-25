@@ -1,0 +1,47 @@
+<div fxLayoutAlign="center center" class="container formcontainer">
+  <mat-card  fxLayout="column"  fxLayoutAlign="center center"  class="example-card">
+    <mat-card-header>
+      <mat-card-title> <h2>Sign Up</h2></mat-card-title>
+    </mat-card-header>
+    <mat-card-content>
+      <form  class="example-form" fxLayout="column">
+
+        <mat-form-field class="example-full-width">
+          <input matInput placeholder="First Name"  >
+        </mat-form-field>
+
+        <mat-form-field class="example-full-width">
+          <input matInput placeholder="Last Name"  >
+        </mat-form-field>
+
+        <mat-form-field class="example-full-width">
+          <input matInput placeholder="Email"  >
+        </mat-form-field>
+
+        <div>
+            <label> Gender </label>
+            <mat-radio-group >
+              <mat-radio-button class="radioCls" value="auto">Male</mat-radio-button>
+              <mat-radio-button class="radioCls" value="always">Female</mat-radio-button>
+            </mat-radio-group>
+          </div>
+
+        <mat-form-field>
+            <input matInput [matDatepicker]="picker" placeholder="DOB">
+            <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+            <mat-datepicker #picker></mat-datepicker>
+        </mat-form-field>
+        <mat-form-field>
+            <mat-select placeholder="Country">
+              <mat-option value="option">India</mat-option>
+              <mat-option value="option">US</mat-option>
+            </mat-select>
+        </mat-form-field>
+        </form>
+    </mat-card-content>
+    <mat-card-actions>
+      <button mat-raised-button color="primary">Sign Up</button>
+      <button mat-raised-button color="primary">Cancel</button>
+    </mat-card-actions>
+  </mat-card>
+</div>
