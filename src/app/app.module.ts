@@ -23,6 +23,7 @@ import { MatCardModule,
 
 import { SigninComponent } from './user/signin/signin.component';
 import { SignupComponent } from './user/signup/signup.component';
+import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
 
 @NgModule({
   declarations: [
@@ -30,15 +31,16 @@ import { SignupComponent } from './user/signup/signup.component';
     DashboardComponent,
     UserComponent,
     SigninComponent,
-    SignupComponent
+    SignupComponent,
+    PageNotFoundComponent
   ],
   imports: [
     BrowserModule,
+    UserModule,
     AppRoutingModule,
     BrowserAnimationsModule,
     ReactiveFormsModule,
     FormsModule,
-    UserModule,
     MatCardModule,
     MatButtonModule,
     MatFormFieldModule,
