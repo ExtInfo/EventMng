@@ -1,47 +1,51 @@
-<div fxLayoutAlign="center center" class="container formcontainer">
-  <mat-card  fxLayout="column"  fxLayoutAlign="center center"  class="example-card">
-    <mat-card-header>
-      <mat-card-title> <h2>Sign Up</h2></mat-card-title>
-    </mat-card-header>
-    <mat-card-content>
-      <form  class="example-form" fxLayout="column">
+<div class="container" >
+  <div class="row justify-content-md-center" [ngStyle]="{'padding-top':'100px'}">
+    <div class="col-md-4 align-self-center">
+      <mat-card  class="example-card" >
+        <mat-card-header fxLayoutAlign="center center">
+          <mat-card-title> <h2>Sign Up</h2></mat-card-title>
+        </mat-card-header>
+        <mat-card-content>
+          <form>
+              <mat-form-field class="example-full-width">
+              <input matInput placeholder="First Name"  >
+            </mat-form-field>
 
-        <mat-form-field class="example-full-width">
-          <input matInput placeholder="First Name"  >
-        </mat-form-field>
+            <mat-form-field class="example-full-width">
+              <input matInput placeholder="Last Name"  >
+            </mat-form-field>
 
-        <mat-form-field class="example-full-width">
-          <input matInput placeholder="Last Name"  >
-        </mat-form-field>
+            <mat-form-field class="example-full-width">
+              <input matInput placeholder="Email"  >
+            </mat-form-field>
 
-        <mat-form-field class="example-full-width">
-          <input matInput placeholder="Email"  >
-        </mat-form-field>
+            <div>
+                <label> Gender </label>
+                <mat-radio-group >
+                  <mat-radio-button class="radioCls" value="auto">Male</mat-radio-button>
+                  <mat-radio-button class="radioCls" value="always">Female</mat-radio-button>
+                </mat-radio-group>
+              </div>
 
-        <div>
-            <label> Gender </label>
-            <mat-radio-group >
-              <mat-radio-button class="radioCls" value="auto">Male</mat-radio-button>
-              <mat-radio-button class="radioCls" value="always">Female</mat-radio-button>
-            </mat-radio-group>
-          </div>
-
-        <mat-form-field>
-            <input matInput [matDatepicker]="picker" placeholder="DOB">
-            <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
-            <mat-datepicker #picker></mat-datepicker>
-        </mat-form-field>
-        <mat-form-field>
-            <mat-select placeholder="Country">
-              <mat-option value="option">India</mat-option>
-              <mat-option value="option">US</mat-option>
-            </mat-select>
-        </mat-form-field>
-        </form>
-    </mat-card-content>
-    <mat-card-actions>
-      <button mat-raised-button color="primary">Sign Up</button>
-      <button mat-raised-button color="primary" (click)='cancelSignupHandler()'>Cancel</button>
-    </mat-card-actions>
-  </mat-card>
+            <mat-form-field [style.width]= "'50%'">
+                <input matInput [matDatepicker]="picker" placeholder="DOB">
+                <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+                <mat-datepicker #picker></mat-datepicker>
+            </mat-form-field>
+            <mat-form-field [ngStyle]="{ 'width': '50%','padding-left':'10px'}">
+                <mat-select placeholder="Country">
+                  <mat-option value="option">India</mat-option>
+                  <mat-option value="option">US</mat-option>
+                </mat-select>
+            </mat-form-field>
+            </form>
+        </mat-card-content>
+        <mat-card-actions fxLayoutAlign="center center">
+          <button mat-raised-button color="primary">Sign Up</button>
+          <button mat-raised-button color="primary" (click)='cancelSignupHandler()'>Cancel</button>
+        </mat-card-actions>
+      </mat-card>
+    </div>
+  </div>
 </div>
+
