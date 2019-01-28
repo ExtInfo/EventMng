@@ -1,7 +1,6 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-import { ReactiveFormsModule, FormsModule } from '@angular/forms';
-import { FlexLayoutModule} from '@angular/flex-layout';
+
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { APP_IMPORTS } from './app.imports';
 
@@ -23,7 +22,6 @@ import { AuthInterceptor } from './shared/auth/auth.interceptors';
     BrowserModule,
     AppRoutingModule,
     BrowserAnimationsModule,
-    FlexLayoutModule,
     HttpClientModule,
     ...APP_IMPORTS
   ],
