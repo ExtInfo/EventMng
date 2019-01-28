@@ -2,13 +2,14 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 import { FlexLayoutModule} from '@angular/flex-layout';
+import { HttpClientModule } from '@angular/common/http';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { UserComponent } from './user/user.component';
-import { UserModule } from './user/user/user.module'
+import { UserModule } from './user/user/user.module';
 
 import { MatCardModule,
   MatButtonModule,
@@ -23,6 +24,8 @@ import { MatCardModule,
 
 import { SigninComponent } from './user/signin/signin.component';
 import { SignupComponent } from './user/signup/signup.component';
+import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
+import { UserService } from './shared/services/user.service';
 
 @NgModule({
   declarations: [
@@ -30,15 +33,16 @@ import { SignupComponent } from './user/signup/signup.component';
     DashboardComponent,
     UserComponent,
     SigninComponent,
-    SignupComponent
+    SignupComponent,
+    PageNotFoundComponent
   ],
   imports: [
     BrowserModule,
+    UserModule,
     AppRoutingModule,
     BrowserAnimationsModule,
     ReactiveFormsModule,
     FormsModule,
-    UserModule,
     MatCardModule,
     MatButtonModule,
     MatFormFieldModule,
@@ -49,7 +53,8 @@ import { SignupComponent } from './user/signup/signup.component';
     MatDatepickerModule,
     MatNativeDateModule,
     MatSelectModule,
-    FlexLayoutModule
+    FlexLayoutModule,
+    HttpClientModule
   ],
   providers: [],
   bootstrap: [AppComponent]
