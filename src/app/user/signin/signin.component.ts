@@ -22,7 +22,7 @@ export class SigninComponent implements OnInit {
   }
 
   login (): void {
-    debugger;
+
     this.userService.userAuthentication(
       this.signInForm.value.userName,
       this.signInForm.value.password).subscribe((data: any) => {

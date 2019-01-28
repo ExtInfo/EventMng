@@ -9,7 +9,7 @@ import { PageNotFoundComponent } from './page-not-found/page-not-found.component
 const routes: Routes = [
   { path: '', redirectTo: '/user/signin', pathMatch: 'full'},
   { path: 'home', component: DashboardComponent },
-  { path: 'user', loadChildren: './user/user/user.module#UserModuleß'},
+  { path: 'user', loadChildren: './user/user/user.module#UserModule'},
   { path: '**', component: PageNotFoundComponent}
 ];
 
