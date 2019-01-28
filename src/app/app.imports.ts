@@ -9,6 +9,7 @@ import { MatCardModule,
   MatNativeDateModule,
   MatSelectModule } from '@angular/material';
   import { ReactiveFormsModule, FormsModule } from '@angular/forms';
+  import {FlexLayoutModule } from '@angular/flex-layout';
 
 export const APP_IMPORTS = [
   MatCardModule,
@@ -22,5 +23,6 @@ export const APP_IMPORTS = [
   MatNativeDateModule,
   MatSelectModule,
   ReactiveFormsModule,
-  FormsModule
+  FormsModule,
+  FlexLayoutModule
 ];
