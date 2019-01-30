@@ -1,38 +1,38 @@
 <div fxLayoutAlign="center center" class="container formcontainer">
-  <mat-card  fxLayout="column"  fxLayoutAlign="center center"  class="example-card">
+  <mat-card  fxLayout="column"   fxLayoutAlign="center center"  class="example-card">
     <mat-card-header>
       <mat-card-title> <h2>Sign Up</h2></mat-card-title>
     </mat-card-header>
     <mat-card-content>
-      <form  class="example-form" fxLayout="column">
+      <form   [formGroup]="signUpForm" class="example-form" fxLayout="column">
 
         <mat-form-field class="example-full-width">
-          <input matInput placeholder="First Name"  >
+          <input matInput placeholder="First Name"  formControlName="firstName">
         </mat-form-field>
 
         <mat-form-field class="example-full-width">
-          <input matInput placeholder="Last Name"  >
+          <input matInput placeholder="Last Name"  formControlName="lastName">
         </mat-form-field>
 
         <mat-form-field class="example-full-width">
-          <input matInput placeholder="Email"  >
+          <input matInput placeholder="Email"  formControlName="email">
         </mat-form-field>
 
         <div>
             <label> Gender </label>
-            <mat-radio-group >
+            <mat-radio-group formControlName="gender">
               <mat-radio-button class="radioCls" value="auto">Male</mat-radio-button>
-              <mat-radio-button class="radioCls" value="always">Female</mat-radio-button>
+              <mat-radio-button  class="radioCls" value="always">Female</mat-radio-button>
             </mat-radio-group>
           </div>
 
         <mat-form-field>
-            <input matInput [matDatepicker]="picker" placeholder="DOB">
+            <input matInput [matDatepicker]="picker" placeholder="DOB"  formControlName="dob">
             <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
             <mat-datepicker #picker></mat-datepicker>
         </mat-form-field>
         <mat-form-field>
-            <mat-select placeholder="Country">
+            <mat-select placeholder="Country"  formControlName="country">
               <mat-option value="option">India</mat-option>
               <mat-option value="option">US</mat-option>
             </mat-select>
@@ -40,7 +40,7 @@
         </form>
     </mat-card-content>
     <mat-card-actions>
-      <button mat-raised-button color="primary">Sign Up</button>
+      <button mat-raised-button color="primary" (click)='registerUserHandler()'>Sign Up</button>
       <button mat-raised-button color="primary" (click)='cancelSignupHandler()'>Cancel</button>
     </mat-card-actions>
   </mat-card>

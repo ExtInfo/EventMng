@@ -1,4 +1,4 @@
-<div fxLayoutAlign="center center" class="container formcontainer">
+<!-- <div fxLayoutAlign="center center" class="container formcontainer">
   <mat-card  fxLayout="column"  fxLayoutAlign="center center"  class="example-card">
     <mat-card-header>
       <mat-card-title> <h2>Sign In</h2></mat-card-title>
@@ -27,4 +27,49 @@
       <button mat-raised-button (click)="signUpHandler()" color="primary">Sign Up</button>
     </mat-card-actions>
   </mat-card>
+</div> -->
+<div class="signin-container">
+  <div class="d-flex justify-content-center h-100">
+    <div class="card">
+      <div class="card-header">
+        <h3>Sign In</h3>
+        <div class="d-flex justify-content-end social_icon">
+          <span> <fa name="facebook-square"></fa></span>
+          <span><fa name="google-plus-square"></fa></span>
+          <span><fa name="twitter-square"></fa></span>
+        </div>
+      </div>
+      <div class="card-body">
+        <form [formGroup]="signInForm">
+          <div class="input-group form-group">
+            <div class="input-group-prepend">
+              <span class="input-group-text"><fa name="user"></fa></span>
+            </div>
+            <input type="text" formControlName="userName" class="form-control" placeholder="username">
+
+          </div>
+          <div class="input-group form-group">
+            <div class="input-group-prepend">
+              <span class="input-group-text"><fa name="key"></fa></span>
+            </div>
+            <input type="password" formControlName="password" class="form-control" placeholder="password">
+          </div>
+          <div class="row align-items-center remember">
+            <input [disabled]="true" type="checkbox">Remember Me
+          </div>
+          <div class="form-group">
+            <input type="submit" (click)="login()" value="Login" class="btn float-right login_btn" [disabled]='!signInForm.valid'>
+          </div>
+        </form>
+      </div>
+      <div class="card-footer">
+        <div class="d-flex justify-content-center links">
+          Don't have an account?<a href="/user/signup">Sign Up</a>
+        </div>
+        <div class="d-flex justify-content-center">
+          <a  href="#">Forgot your password?</a>
+        </div>
+      </div>
+    </div>
+  </div>
 </div>
