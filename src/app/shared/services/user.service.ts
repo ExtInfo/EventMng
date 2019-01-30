@@ -9,16 +9,23 @@ import { Observable } from 'rxjs';
 export class UserService {
   rootUrl: String = 'https://ext-login2.herokuapp.com';
   constructor(public http: HttpClient) { }
-  registerUser (user: User): Observable<any> {
-    const body: User = {
-      Email: user.Email,
-      FirstName: user.FirstName,
-      LastName: user.LastName,
-      Country: user.Country,
-      DOB: user.DOB
+
+  registerUser (user: any): Observable<any> {
+    const body: any = {
+      email: user.email,
+      firstName: user.firstName,
+      lastName: user.lastName,
+      country: user.country,
+      dob: user.dob,
+      gender: user.gender
     };
-    const reqHeader = new HttpHeaders({'No-Auth': 'True'});
-    return this.http.post(this.rootUrl + '/api/', body, {headers : reqHeader});
+    const  body2 = {
+      'username': 'nsdeshmukh08',
+      'email': 'nsdeshmukh08@gmail.com',
+      'password': '123'
+    };
+    const reqHeader = new HttpHeaders({'No-Auth': 'True', 'Content-Type': 'application/json'});
+    return this.http.post(this.rootUrl + '/register', body2);
   }
 
   userAuthentication (userName, passwordObj): Observable<any> {
@@ -29,4 +36,5 @@ export class UserService {
     const reqHeader = new HttpHeaders({ 'Content-Type': 'application/json', 'No-Auth': 'True' });
     return this.http.post(this.rootUrl + '/login', body, { headers: reqHeader });
   }
+
 }
