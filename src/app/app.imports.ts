@@ -7,9 +7,12 @@ import { MatCardModule,
   MatRadioModule,
   MatDatepickerModule,
   MatNativeDateModule,
-  MatSelectModule } from '@angular/material';
+  MatSelectModule,
+  MatSidenavModule,
+  MatToolbarModule } from '@angular/material';
   import { ReactiveFormsModule, FormsModule } from '@angular/forms';
   import {FlexLayoutModule } from '@angular/flex-layout';
+  import { AngularFontAwesomeModule } from 'angular-font-awesome';
 
 export const APP_IMPORTS = [
   MatCardModule,
@@ -22,7 +25,10 @@ export const APP_IMPORTS = [
   MatDatepickerModule,
   MatNativeDateModule,
   MatSelectModule,
+  MatSidenavModule,
+  MatToolbarModule,
   ReactiveFormsModule,
   FormsModule,
-  FlexLayoutModule
+  FlexLayoutModule,
+  AngularFontAwesomeModule
 ];
