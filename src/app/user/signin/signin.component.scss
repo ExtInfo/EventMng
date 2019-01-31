@@ -6,7 +6,7 @@
 }
 
   .card{
-  height: 370px;
+  height: 400px;
   margin-top: auto;
   margin-bottom: auto;
   width: 400px;
@@ -46,7 +46,15 @@
   box-shadow: 0 0 0 0 !important;
 
   }
-
+ .form-group{
+   margin: 0px;
+ }
+ .input-error-cls{
+   margin-bottom: 1.5em;
+ }
+ .red-color-cls{
+  color:red;
+ }
   .remember{
   color: white;
   }

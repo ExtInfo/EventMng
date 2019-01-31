@@ -9,7 +9,6 @@ import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
-import { UserService } from './shared/services/user.service';
 import { AuthInterceptor } from './shared/auth/auth.interceptors';
 
 @NgModule({

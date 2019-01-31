@@ -16,21 +16,17 @@ export class SignupComponent implements OnInit {
       firstName: ['', Validators.required],
       lastName: ['', Validators.required],
       email: ['', [Validators.required, Validators.email]],
-      gender: [''],
-      dob: [''],
-      country: ['']
+      dob: ['', Validators.required],
+      country: ['', Validators.required]
     });
   }
   ngOnInit() {
   }
 
   registerUserHandler(): void {
-    debugger;
     this.userService.registerUser(this.signUpForm.value).subscribe((data: any) => {
-      debugger;
       console.log('data-----' + JSON.stringify(data));
         }, (err: HttpErrorResponse) => {
-          debugger;
            console.log('error' + err );
     });
   }
