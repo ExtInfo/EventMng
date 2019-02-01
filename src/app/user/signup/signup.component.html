@@ -1,4 +1,4 @@
-<div fxLayoutAlign="center center" class="container formcontainer">
+<!-- <div fxLayoutAlign="center center" class="container formcontainer">
   <mat-card  fxLayout="column"   fxLayoutAlign="center center"  class="example-card">
     <mat-card-header>
       <mat-card-title> <h2>Sign Up</h2></mat-card-title>
@@ -44,4 +44,91 @@
       <button mat-raised-button color="primary" (click)='cancelSignupHandler()'>Cancel</button>
     </mat-card-actions>
   </mat-card>
+</div> -->
+<div class="signup-container">
+    <div class="d-flex justify-content-center signup-h-100">
+        <div class="card">
+          <form [formGroup]="signUpForm">
+            <div class="card-header">
+                <h3>Sign Up</h3>
+            </div>
+            <div class="card-body">
+                <!-- First Name Start-->
+                <div [ngClass] = "{'input-error-cls' :(!signUpForm.get('firstName').touched || signUpForm.get('firstName').valid), 'input-group' : true,'form-group':true}">
+                    <div class="input-group-prepend">
+                      <span class="input-group-text"><fa name="user"></fa></span>
+                    </div>
+                    <input matInput  type="text"  formControlName="firstName" class="form-control" placeholder="First Name" >
+                </div>
+                <div class="input-error-cls red-color-cls" *ngIf="signUpForm.get('firstName').touched
+                      && signUpForm.get('firstName').invalid">This is required field.</div>
+                <!-- First Name End-->
+                <!-- Last Name Stat-->
+                <div [ngClass] = "{'input-error-cls' :(!signUpForm.get('lastName').touched || signUpForm.get('lastName').valid), 'input-group' : true,'form-group':true}">
+                    <div class="input-group-prepend">
+                      <span class="input-group-text"><fa name="user"></fa></span>
+                    </div>
+                    <input matInput type="text"  formControlName="lastName" class="form-control" placeholder="Last Name">
+                </div>
+                <div class="input-error-cls red-color-cls" *ngIf="signUpForm.get('lastName').touched
+                      && signUpForm.get('lastName').invalid">This is required field.</div>
+                <!-- Last Name End-->
+                <!-- Email Start-->
+                <div [ngClass] = "{'input-error-cls' :(!signUpForm.get('email').touched || signUpForm.get('email').valid), 'input-group' : true,'form-group':true}">
+                  <div class="input-group-prepend">
+                    <span class="input-group-text"><fa name="user"></fa></span>
+                  </div>
+                  <input matInput type="text" formControlName="email"  class="form-control" placeholder="Email">
+                </div>
+                <div class="input-error-cls red-color-cls" *ngIf="signUpForm.get('email').touched
+                && signUpForm.get('email').invalid">This is required field.</div>
+                <!-- Email End-->
+                <!-- DOB Start-->
+                <div [ngClass] ="{'input-error-cls' :(!signUpForm.get('dob').touched || signUpForm.get('dob').valid), 'input-group' : true,'form-group':true}">
+                  <div class="input-group-prepend">
+                    <span class="input-group-text"><fa name="user"></fa></span>
+                  </div>
+                  <input matInput [matDatepicker]="picker" placeholder="DOB"  formControlName="dob" class="form-control mat-input-cls">
+                  <mat-datepicker-toggle  class="date-picker-toggle-cls" matSuffix [for]="picker"></mat-datepicker-toggle>
+                  <mat-datepicker #picker></mat-datepicker>
+                </div>
+                <div class="input-error-cls red-color-cls" *ngIf="signUpForm.get('dob').touched
+                      && signUpForm.get('dob').invalid">This is required field.</div>
+                <!-- DOB End-->
+                <!-- <div [ngClass] = "{'input-error-cls' :(!signUpForm.get('gender').touched || signUpForm.get('gender').valid), 'input-group' : true,'form-group':true}">
+                    <div class="input-group-prepend">
+                      <span class="input-group-text"><fa name="user"></fa></span>
+                    </div>
+                    <label class="label-signup-cls"> Gender </label>
+                    <mat-radio-group formControlName="gender">
+                      <mat-radio-button class="radioCls" value="auto">Male</mat-radio-button>
+                      <mat-radio-button  class="radioCls" value="always">Female</mat-radio-button>
+                    </mat-radio-group>
+                </div>
+                <div class="input-error-cls red-color-cls" *ngIf="signUpForm.get('gender').touched
+                      && signUpForm.get('gender').invalid">This is required field.</div> -->
+
+                <!-- country Start-->
+                <div [ngClass] ="{'input-error-cls' :(!signUpForm.get('country').touched || signUpForm.get('country').valid), 'input-group' : true,'form-group':true}">
+                    <div class="input-group-prepend">
+                      <span class="input-group-text"><fa name="user"></fa></span>
+                    </div>
+                    <mat-select placeholder="Country" class="form-control" formControlName="country">
+                      <mat-option value="option">India</mat-option>
+                      <mat-option value="option">US</mat-option>
+                    </mat-select>
+                </div>
+                <div class="input-error-cls red-color-cls" *ngIf="signUpForm.get('country').touched
+                      && signUpForm.get('country').invalid">This is required field.</div>
+                <!-- country End-->
+
+            </div>
+            <div fxLayoutAlign="center center" class="card-footer">
+                <input type="button" value="signin" class="btn float-right login_btn">
+                <div style="width:20px;float:right"></div>
+                <input type="button" value="cancel" class="btn float-right login_btn">
+            </div>
+          </form>
+        </div>
+    </div>
 </div>
