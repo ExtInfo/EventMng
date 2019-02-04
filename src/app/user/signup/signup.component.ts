@@ -2,7 +2,9 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { Validators, FormBuilder, FormGroup } from '@angular/forms';
 import { UserService } from '../../shared/services/user.service';
-import {HttpErrorResponse} from '@angular/common/http';
+import { HttpErrorResponse} from '@angular/common/http';
+import { NameValidator } from '../../shared/validators/nameValidator';
+import { EmailValidator } from '../../shared/validators/emailValidator';
 
 @Component({
   selector: 'app-signup',
@@ -10,12 +12,14 @@ import {HttpErrorResponse} from '@angular/common/http';
   styleUrls: ['./signup.component.scss']
 })
 export class SignupComponent implements OnInit {
+
   signUpForm: FormGroup;
+
   constructor(public fb: FormBuilder, public router: Router, public userService: UserService) {
     this.signUpForm = fb.group({
-      firstName: ['', Validators.required],
-      lastName: ['', Validators.required],
-      email: ['', [Validators.required, Validators.email]],
+      firstName: ['', Validators.compose([Validators.required, NameValidator])],
+      lastName: ['', Validators.compose([Validators.required, NameValidator])],
+      email: ['', Validators.compose([Validators.required, EmailValidator])],
       dob: ['', Validators.required],
       country: ['', Validators.required]
     });
@@ -30,6 +34,11 @@ export class SignupComponent implements OnInit {
            console.log('error' + err );
     });
   }
+
+  get sf() {
+    return this.signUpForm.controls;
+  }
+
   cancelSignupHandler (): void {
     this.router.navigate(['/user/signin']);
   }
