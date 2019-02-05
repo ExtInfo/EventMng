@@ -3,6 +3,7 @@ import { NgModule } from '@angular/core';
 
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { APP_IMPORTS } from './app.imports';
+import { NgxSpinnerModule } from 'ngx-spinner';
 import { ConfirmEqualValidatorDirective } from './shared/validators/confirm-equal-validator.directive';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -24,6 +25,7 @@ import { from } from 'rxjs';
     AppRoutingModule,
     BrowserAnimationsModule,
     HttpClientModule,
+    NgxSpinnerModule,
     ...APP_IMPORTS
   ],
   providers: [{
