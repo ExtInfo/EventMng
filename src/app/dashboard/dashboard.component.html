@@ -1,3 +1,97 @@
-<p>
-  dashboard works!!!
-</p>
+<main>
+  <!-- <mat-spinner class="spinner-cls"></mat-spinner> -->
+  <div class="admin-container d-flex align-items-stretch">
+    <div class="sidenav" [ngClass]="getClasses(isHidden)">
+          <div class="logo-outer">
+              <a href="javascript:;"><img src="../assets/images/logo.png" /></a>
+          </div>
+          <nav>
+            <ul>
+              <li>
+                <a href="javascript:;" class="active">Home</a>
+              </li>
+              <li>
+                <a href="javascript:;">Profile</a>
+              </li>
+              <li>
+                <a href="javascript:;">About</a>
+              </li>
+              <li>
+                <a href="javascript:;">Logout</a>
+              </li>
+            </ul>
+          </nav>
+      </div>
+    <div class="main-container d-flex flex-column">
+        <div class="header header d-md-flex justify-content-md-between align-items-md-center">
+          <div class="header-search-outer">
+              <a href="javascript:;" (click)="menuToggleHandler()" [ngClass]="getClass(isHidden)"><img src="../assets/images/menu.png" /></a>
+              <input type="search" placeholder="Search" class="search-input" />
+          </div>
+          <nav class="header-nav-outer">
+              <ul>
+                <li>
+                  <a href="javascript:;"><img src="../assets/images/msg-icon.png" /></a>
+                </li>
+                <li>
+                  <a href="javascript:;"><img src="../assets/images/notification-icon.png" /></a>
+                </li>
+                <li>
+                  <a href="javascript:;"><img src="../assets/images/user-icon.png" /></a>
+                </li>
+              </ul>
+          </nav>
+        </div>
+      <div class="main-content">
+          <div class="row">
+            <div class="col-lg-6">
+                <div class="card-outer">
+                    <div class="d-flex justify-content-stretch">
+                        <div class="event-indicator violet">
+                          <span>12</span> Upcoming Events
+                        </div>
+                        <div class="event-indicator-list">
+                          <ul>
+                            <li>
+                              <p>Lorem ipsum</p>
+                              <p>Lorem ipsum dolor sit amet, consectetur.</p>
+                            </li>
+                            <li>
+                                <p>Lorem ipsum</p>
+                                <p>Lorem ipsum dolor sit amet, consectetur.</p>
+                              </li>
+                          </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-6">
+                <div class="card-outer">
+                    <div class="d-flex justify-content-stretch">
+                        <div class="event-indicator sky-blue">
+                          <span>12</span> Upcoming Events
+                        </div>
+                        <div class="event-indicator-list">
+                            <ul>
+                              <li>
+                                <p>Lorem ipsum</p>
+                                <p>Lorem ipsum dolor sit amet, consectetur.</p>
+                              </li>
+                              <li>
+                                  <p>Lorem ipsum</p>
+                                  <p>Lorem ipsum dolor sit amet, consectetur.</p>
+                                </li>
+                            </ul>
+                          </div>
+                    </div>
+                </div>
+            </div>
+          </div>
+      </div>
+      <div class="copyrights">
+          Copyright © Event Manager 2019
+      </div>
+    </div>
+  </div>
+
+</main>
