@@ -7,34 +7,32 @@ import { Observable } from 'rxjs';
   providedIn: 'root'
 })
 export class UserService {
-  rootUrl: String = 'https://ext-login2.herokuapp.com';
+  rootUrl: String = 'http://192.168.32.153:3004';
   constructor(public http: HttpClient) { }
 
   registerUser (user: any): Observable<any> {
-    const body: any = {
-      email: user.email,
-      firstName: user.firstName,
-      lastName: user.lastName,
-      country: user.country,
-      dob: user.dob,
-      gender: user.gender
-    };
-    const  body2 = {
-      'username': 'nsdeshmukh08',
-      'email': 'nsdeshmukh08@gmail.com',
-      'password': '123'
-    };
-    const reqHeader = new HttpHeaders({'No-Auth': 'True', 'Content-Type': 'application/json'});
-    return this.http.post(this.rootUrl + '/register', body2);
-  }
 
+    const { firstName, lastName, email, dob, country, password } = user;
+    const body: any = {
+      firstName, lastName, email, dob, country, password
+    };
+    const reqHeader = new HttpHeaders({'Content-Type': 'application/json','access-opt':'95445'});
+    return this.http.post(this.rootUrl + '/users/registerUser', body);
+  }
+  verifyEmail (email: string) {
+    const body: any = {
+      email: email
+    };
+    const reqHeader = new HttpHeaders({ 'Content-Type': 'application/json'});
+    return this.http.post(this.rootUrl + '/users/verify', body, { headers: reqHeader });
+  }
   userAuthentication (userName, passwordObj): Observable<any> {
     const body: any = {
       email: userName,
       password: passwordObj
     };
-    const reqHeader = new HttpHeaders({ 'Content-Type': 'application/json', 'No-Auth': 'True' });
-    return this.http.post(this.rootUrl + '/login', body, { headers: reqHeader });
+    const reqHeader = new HttpHeaders({ 'Content-Type': 'application/json'});
+    return this.http.post(this.rootUrl + '/users/login', body, { headers: reqHeader });
   }
 
 }

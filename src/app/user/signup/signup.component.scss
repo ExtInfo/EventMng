@@ -96,6 +96,9 @@
     margin: 0px;
     background: white;
   }
+  .form-group-otp{
+    margin: 0px;
+  }
   .input-error-cls{
     margin-bottom: 1.5em;
   }
@@ -109,6 +112,13 @@
     color:red;
    }
 
+.input-otp-cls{
+  right: 0px;
+  height: 36px;
+  width: 94px;
+  margin-left: 10px;
+  background: #9db73f;
+}
   @media (min-width: 321px) and (max-height: 500px) {
     .signup-container {
 
