@@ -4,6 +4,7 @@ import { Validators, FormBuilder, FormGroup } from '@angular/forms';
 import { UserService } from '../../shared/services/user.service';
 import { HttpErrorResponse} from '@angular/common/http';
 import { EmailValidator, NameValidator } from '../../shared/validators/formValidator';
+import { NgxSpinnerService } from 'ngx-spinner';
 
 @Component({
   selector: 'app-signup',
@@ -12,10 +13,10 @@ import { EmailValidator, NameValidator } from '../../shared/validators/formValid
 })
 export class SignupComponent implements OnInit {
 
-  signUpForm: FormGroup;
-  isVerifiedEmail:boolean = false;
+  public signUpForm: FormGroup;
+  public isVerifiedEmail: boolean = false;
 
-  constructor(public fb: FormBuilder, public router: Router, public userService: UserService) {
+  constructor(public fb: FormBuilder, public router: Router, public userService: UserService, public spinner: NgxSpinnerService ) {
     this.signUpForm = fb.group({
       firstName: ['', Validators.compose([Validators.required, NameValidator])],
       lastName: ['', Validators.compose([Validators.required, NameValidator])],
@@ -23,24 +24,25 @@ export class SignupComponent implements OnInit {
       dob: ['', Validators.required],
       country: ['', Validators.required],
       password: ['', [Validators.required]],
-      confirmPassword: ['', [Validators.required]]
+      confirmPassword: ['', [Validators.required]],
+      otpNum: ['', Validators.required]
     }, {validator: this.passwordMatchValidator});
   }
+
   ngOnInit() {
+    this.spinner.hide();
   }
 
   registerUserHandler(): void {
     this.userService.registerUser(this.signUpForm.value).subscribe((data: any) => {
-      console.log('data-----' + JSON.stringify(data));
+        this.router.navigate(['/user/signin']);
       alert(data.message);
-        }, (err: HttpErrorResponse) => {
-           console.log('error' + err );
+    }, (err: HttpErrorResponse) => {
+        console.log('error' + err );
     });
   }
   passwordMatchValidator(frmGrp: FormGroup) {
-    return frmGrp.controls.password.value === frmGrp.controls.confirmPassword.value
-        ? null
-        : { mismatch: true };
+    return frmGrp.controls.password.value === frmGrp.controls.confirmPassword.value ? null : { mismatch: true };
   }
 
   emailVerficationHandler(): void {
@@ -62,5 +64,4 @@ export class SignupComponent implements OnInit {
   cancelSignupHandler (): void {
     this.router.navigate(['/user/signin']);
   }
-
 }
