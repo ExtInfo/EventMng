@@ -10,9 +10,9 @@ export class AuthInterceptor implements HttpInterceptor {
 
   }
   intercept(req: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
-    if (req.headers.get('No-Auth') === 'True') {
+  //  if (req.headers.get('No-Auth') === 'True') {
       return next.handle(req.clone());
-    }
+  //   }
     if (localStorage.getItem('token') !== null) {
       const reqClone = req.clone({
         headers: req.headers.set('Authorization', 'Bearer ' + localStorage.getItem('userToken'))

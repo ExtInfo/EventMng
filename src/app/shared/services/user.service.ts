@@ -7,24 +7,20 @@ import { Observable } from 'rxjs';
   providedIn: 'root'
 })
 export class UserService {
-  rootUrl: String = 'http://192.168.32.153:3004';
+  rootUrl: String = 'https://event-mng-server.herokuapp.com';
   constructor(public http: HttpClient) { }
 
   registerUser (user: any): Observable<any> {
-
-    const { firstName, lastName, email, dob, country, password } = user;
+    const { firstName, lastName, email, dob, country, password, otpNum } = user;
     const body: any = {
-      firstName, lastName, email, dob, country, password
+      firstName, lastName, email, dob, country, password, otpNum
     };
-    const reqHeader = new HttpHeaders({'Content-Type': 'application/json','access-opt':'95445'});
-    return this.http.post(this.rootUrl + '/users/registerUser', body);
+    const reqHeader = new HttpHeaders({'Content-Type': 'application/json'});
+    return this.http.post(this.rootUrl + '/users/registerUser', body, {headers: reqHeader});
   }
-  verifyEmail (email: string) {
-    const body: any = {
-      email: email
-    };
-    const reqHeader = new HttpHeaders({ 'Content-Type': 'application/json'});
-    return this.http.post(this.rootUrl + '/users/verify', body, { headers: reqHeader });
+  verifyEmail (email: string): Observable <any> {
+    const reqHeader = new HttpHeaders({ 'Content-Type': 'application/json', 'access-token': 'test'});
+    return this.http.get(this.rootUrl + '/users/verifyEmail', {headers: reqHeader, params: {email: email}});
   }
   userAuthentication (userName, passwordObj): Observable<any> {
     const body: any = {
