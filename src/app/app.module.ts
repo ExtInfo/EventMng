@@ -4,7 +4,6 @@ import { NgModule } from '@angular/core';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { APP_IMPORTS } from './app.imports';
 import { NgxSpinnerModule } from 'ngx-spinner';
-import { ConfirmEqualValidatorDirective } from './shared/validators/confirm-equal-validator.directive';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
@@ -17,8 +16,8 @@ import { from } from 'rxjs';
   declarations: [
     AppComponent,
     DashboardComponent,
-    PageNotFoundComponent,
-    ConfirmEqualValidatorDirective
+    PageNotFoundComponent
+
   ],
   imports: [
     BrowserModule,
