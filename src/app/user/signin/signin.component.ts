@@ -28,7 +28,7 @@ export class SigninComponent implements OnInit {
       this.signInForm.value.password).subscribe((data: any) => {
       console.log(data);
       localStorage.setItem('userToken', data.token);
-      this.router.navigate(['/home']);
+      this.router.navigate(['/dashboard']);
     },
     (err: HttpErrorResponse) => {
       alert(err);

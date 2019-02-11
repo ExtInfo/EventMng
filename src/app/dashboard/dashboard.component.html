@@ -8,16 +8,16 @@
           <nav>
             <ul>
               <li>
-                <a href="javascript:;" class="active">Home</a>
+                <a  (click)= "OnNavTabClick('home')" [ngClass]=" ('home'=== isNavTabClick) ? 'active' : ''">Home</a>
               </li>
               <li>
-                <a href="javascript:;">Profile</a>
+                <a  (click)= "OnNavTabClick('profile')" [ngClass]=" ('profile' === isNavTabClick) ? 'active' : ''">Profile</a>
               </li>
               <li>
-                <a href="javascript:;">About</a>
+                <a   (click)= "OnNavTabClick('about')"  [ngClass]=" ('about' === isNavTabClick) ? 'active' : ''">About</a>
               </li>
               <li>
-                <a href="javascript:;">Logout</a>
+                <a (click)= "OnNavTabClick('logout')"  [ngClass]=" ('logout' === isNavTabClick) ? 'active' : ''">Logout</a>
               </li>
             </ul>
           </nav>
@@ -43,50 +43,7 @@
           </nav>
         </div>
       <div class="main-content">
-          <div class="row">
-            <div class="col-lg-6">
-                <div class="card-outer">
-                    <div class="d-flex justify-content-stretch">
-                        <div class="event-indicator violet">
-                          <span>12</span> Upcoming Events
-                        </div>
-                        <div class="event-indicator-list">
-                          <ul>
-                            <li>
-                              <p>Lorem ipsum</p>
-                              <p>Lorem ipsum dolor sit amet, consectetur.</p>
-                            </li>
-                            <li>
-                                <p>Lorem ipsum</p>
-                                <p>Lorem ipsum dolor sit amet, consectetur.</p>
-                              </li>
-                          </ul>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="col-lg-6">
-                <div class="card-outer">
-                    <div class="d-flex justify-content-stretch">
-                        <div class="event-indicator sky-blue">
-                          <span>12</span> Upcoming Events
-                        </div>
-                        <div class="event-indicator-list">
-                            <ul>
-                              <li>
-                                <p>Lorem ipsum</p>
-                                <p>Lorem ipsum dolor sit amet, consectetur.</p>
-                              </li>
-                              <li>
-                                  <p>Lorem ipsum</p>
-                                  <p>Lorem ipsum dolor sit amet, consectetur.</p>
-                                </li>
-                            </ul>
-                          </div>
-                    </div>
-                </div>
-            </div>
-          </div>
+          <router-outlet></router-outlet>
       </div>
       <div class="copyrights">
           Copyright © Event Manager 2019
@@ -95,3 +52,7 @@
   </div>
 
 </main>
+
+
+
+
