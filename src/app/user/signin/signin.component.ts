@@ -3,6 +3,7 @@ import { Validators, FormBuilder, FormGroup } from '@angular/forms';
 import { Router } from '@angular/router';
 import { UserService } from '../../shared/services/user.service';
 import { HttpErrorResponse } from '@angular/common/http';
+import { AlertService } from '../../shared/component/alert/alert.service';
 
 @Component({
   selector: 'app-signin',
@@ -11,7 +12,10 @@ import { HttpErrorResponse } from '@angular/common/http';
 })
 export class SigninComponent implements OnInit {
   signInForm: FormGroup;
-  constructor(public fb: FormBuilder, public router: Router, public userService: UserService) {
+  constructor(public fb: FormBuilder,
+    public router: Router,
+    public userService: UserService,
+    public alertService: AlertService) {
     this.signInForm = fb.group({
       userName: ['', [ Validators.required, Validators.email]],
       password: ['', Validators.required]
@@ -34,5 +38,11 @@ export class SigninComponent implements OnInit {
       alert(err);
     });
 
+  }
+
+  forgotPasswordHandler(): void {
+    this.alertService.confirm('Event Manager', 'Work In Progress...')
+    .then((confirmed) => console.log('User confirmed:', confirmed))
+    .catch(() => console.log('User dismissed the dialog (e.g., by using ESC, clicking the cross icon, or clicking outside the dialog)'));}
   }
 }

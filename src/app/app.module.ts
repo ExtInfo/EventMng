@@ -9,12 +9,16 @@ import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
 import { AuthInterceptor } from './shared/auth/auth.interceptors';
-import { from } from 'rxjs';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { AlertComponent } from './shared/component/alert/alert.component';
+import { AlertService } from './shared/component/alert/alert.service'
 
 @NgModule({
   declarations: [
     AppComponent,
-    PageNotFoundComponent
+    PageNotFoundComponent,
+    AlertComponent
+
   ],
   imports: [
     BrowserModule,
@@ -22,13 +26,16 @@ import { from } from 'rxjs';
     BrowserAnimationsModule,
     HttpClientModule,
     NgxSpinnerModule,
+    NgbModule.forRoot(),
     ...APP_IMPORTS
   ],
-  providers: [{
+  providers: [
+    AlertService, {
     provide: HTTP_INTERCEPTORS,
     useClass: AuthInterceptor,
     multi: true
   }],
+  entryComponents: [AlertComponent],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
