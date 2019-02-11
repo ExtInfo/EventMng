@@ -31,7 +31,11 @@ export class SigninComponent implements OnInit {
       this.signInForm.value.userName,
       this.signInForm.value.password).subscribe((data: any) => {
       console.log(data);
-      localStorage.setItem('userToken', data.token);
+      const uData = {
+        userId: data.userId,
+        userToken: data.token
+      };
+      localStorage.setItem('userData', JSON.stringify(uData));
       this.router.navigate(['/dashboard']);
     },
     (err: HttpErrorResponse) => {
@@ -43,6 +47,6 @@ export class SigninComponent implements OnInit {
   forgotPasswordHandler(): void {
     this.alertService.confirm('Event Manager', 'Work In Progress...')
     .then((confirmed) => console.log('User confirmed:', confirmed))
-    .catch(() => console.log('User dismissed the dialog (e.g., by using ESC, clicking the cross icon, or clicking outside the dialog)'));}
+    .catch(() => console.log('User dismissed the dialog (e.g., by using ESC, clicking the cross icon, or clicking outside the dialog)'));
   }
 }
