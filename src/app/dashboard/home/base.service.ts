@@ -14,7 +14,7 @@ export class BaseService {
     const reqHeaders = {
         'access-token': token
     };
-    return this.http.get(this.rootURL + '/getAllEvents', { headers: reqHeaders, params: {uid: userId} });
+    return this.http.get(this.rootURL + '/events/getAllEvents', { headers: reqHeaders, params: {uid: userId} });
   }
 
 
