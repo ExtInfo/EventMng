@@ -3,21 +3,25 @@
       <div class="card-outer">
           <div class="d-flex justify-content-stretch">
               <div class="event-indicator violet">
-                <span>12</span> Upcoming Events
+                <span>{{ draftCount }}</span> Upcoming Events
               </div>
-              <div class="event-indicator-list">
-                <ul>
-                  <li>
-                    <p>Lorem ipsum</p>
-                    <p>Lorem ipsum dolor sit amet, consectetur.</p>
-                  </li>
-                  <li>
-                      <p>Lorem ipsum</p>
-                      <p>Lorem ipsum dolor sit amet, consectetur.</p>
-                    </li>
-                </ul>
-              </div>
+              <ngb-carousel *ngIf="testArray" [showNavigationArrows]="showNavigationArrows" [showNavigationIndicators]="showNavigationIndicators">
+                  <ng-template ngbSlide *ngFor="let test of testArray">
+                      <div class="event-indicator-list">
+                          <ul>
+                            <li>
+                              <p>Lorem ipsum</p>
+                              <p>Lorem ipsum dolor sit amet, consectetur.</p>
+                            </li>
+                          </ul>
+                        </div>
+                  </ng-template>
+                </ngb-carousel>
           </div>
+          <div class="btn-group" role="group" aria-label="Carousel toggle controls">
+              <button type="button" (click)="showNavigationArrows = !showNavigationArrows" class="btn btn-outline-dark btn-sm"></button>
+              <button type="button" (click)="showNavigationIndicators = !showNavigationIndicators" class="btn btn-outline-dark btn-sm"></button>
+            </div>
       </div>
   </div>
   <div class="col-lg-6">
