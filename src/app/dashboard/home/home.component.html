@@ -1,27 +1,84 @@
+<div class="row home-header">
+  <span> CALENDER </span> <button value="Create Event">+ Create Event</button>
+</div>
 <div class="row">
+    <div class="col-lg-6 calender-cls">
+        <div class="card-outer justify-content-center">
+          <jqxCalendar [width]="300" [height]="300" (onChange)="myCalendarEvent($event)" #eventCalender></jqxCalendar>
+        </div>
+        </div>
+    <div class="col-lg-6">
+        <div class="card-outer">
+          <div #calenderPanel> NO data here... </div>
+        </div>
+    </div>
+</div>
+<div class="row ">
   <div class="col-lg-6">
       <div class="card-outer">
           <div class="d-flex justify-content-stretch">
               <div class="event-indicator violet">
-                <span>{{ draftCount }}</span> Upcoming Events
+                <span>{{ draftCount }} 15</span> Upcoming Events
               </div>
-              <ngb-carousel *ngIf="testArray" [showNavigationArrows]="showNavigationArrows" [showNavigationIndicators]="showNavigationIndicators">
-                  <ng-template ngbSlide *ngFor="let test of testArray">
-                      <div class="event-indicator-list">
-                          <ul>
-                            <li>
-                              <p>Lorem ipsum</p>
-                              <p>Lorem ipsum dolor sit amet, consectetur.</p>
-                            </li>
-                          </ul>
+              <div class="slider-outer">
+                <ngb-carousel *ngIf="testArray" class="indicator">
+                    <ng-template ngbSlide>
+                        <div class="user-data-outer">
+                            <p class="date-outer">
+                                Feb 24, 2019 11:30 a.m. - Feb 25, 2019 12:30 p.m.
+                            </p>
+                            <div class="d-flex justify-content-between">
+                              <div class="user-data">
+                                  <p class="heading">DD-IO-DRM104382-02</p>
+                                  <p><strong>John Smith,</strong> Owner</p>
+                                  <p>1817 Farnum Road New York, NY 10022</p>
+                              </div>
+                              <div class="user-role">
+                                <p><strong>Orlando Wheeler</strong></p>
+                                <p>Speaker</p>
+                              </div>
+                            </div>
                         </div>
+                    </ng-template>
+                    <ng-template ngbSlide>
+                      <div class="user-data-outer">
+                          <p class="date-outer">
+                              Feb 26, 2019 12:30 p.m - Feb 27, 2019 12:30 p.m.
+                          </p>
+                          <div class="d-flex justify-content-between">
+                            <div class="user-data">
+                                <p class="heading">DD-IO-DRM104382-02</p>
+                                <p><strong>John Smith,</strong> Owner</p>
+                                <p>1817 Farnum Road New York, NY 10022</p>
+                            </div>
+                            <div class="user-role">
+                              <p><strong>Orlando Wheeler</strong></p>
+                              <p>Consultant</p>
+                            </div>
+                          </div>
+                      </div>
                   </ng-template>
+                  <ng-template ngbSlide>
+                    <div class="user-data-outer">
+                        <p class="date-outer">
+                            Feb 24, 2019 11:30 a.m. - Feb 25, 2019 12:30 p.m.
+                        </p>
+                        <div class="d-flex justify-content-between">
+                          <div class="user-data">
+                              <p class="heading">DD-IO-DRM104382-02</p>
+                              <p><strong>Orlando Wheeler,</strong> Owner</p>
+                              <p>1817 Farnum Road New York, NY 10022</p>
+                          </div>
+                          <div class="user-role">
+                            <p><strong>John Smith</strong></p>
+                            <p>Speaker</p>
+                          </div>
+                        </div>
+                    </div>
+                    </ng-template>
                 </ngb-carousel>
+              </div>
           </div>
-          <div class="btn-group" role="group" aria-label="Carousel toggle controls">
-              <button type="button" (click)="showNavigationArrows = !showNavigationArrows" class="btn btn-outline-dark btn-sm"></button>
-              <button type="button" (click)="showNavigationIndicators = !showNavigationIndicators" class="btn btn-outline-dark btn-sm"></button>
-            </div>
       </div>
   </div>
   <div class="col-lg-6">
@@ -30,18 +87,64 @@
               <div class="event-indicator sky-blue">
                 <span>12</span> Upcoming Events
               </div>
-              <div class="event-indicator-list">
-                  <ul>
-                    <li>
-                      <p>Lorem ipsum</p>
-                      <p>Lorem ipsum dolor sit amet, consectetur.</p>
-                    </li>
-                    <li>
-                        <p>Lorem ipsum</p>
-                        <p>Lorem ipsum dolor sit amet, consectetur.</p>
-                      </li>
-                  </ul>
-                </div>
+              <div class="slider-outer">
+                <ngb-carousel *ngIf="testArray" class="indicator">
+                    <ng-template ngbSlide>
+                        <div class="user-data-outer">
+                            <p class="date-outer">
+                                Feb 24, 2019 11:30 a.m. - Feb 25, 2019 12:30 p.m.
+                            </p>
+                            <div class="d-flex justify-content-between">
+                              <div class="user-data">
+                                  <p class="heading">DD-IO-DRM187945-54</p>
+                                  <p><strong>Maria Brown,</strong> Owner</p>
+                                  <p>1941 Wayback Lane Manhattan, NY 10107</p>
+                              </div>
+                              <div class="user-role">
+                                <p><strong>Jean Sampson</strong></p>
+                                <p>Speaker</p>
+                              </div>
+                            </div>
+                        </div>
+                    </ng-template>
+                    <ng-template ngbSlide>
+                      <div class="user-data-outer">
+                          <p class="date-outer">
+                              Feb 26, 2019 12:30 p.m - Feb 27, 2019 12:30 p.m.
+                          </p>
+                          <div class="d-flex justify-content-between">
+                            <div class="user-data">
+                                <p class="heading">DD-IO-DRM104382-02</p>
+                                <p><strong>John Smith,</strong> Owner</p>
+                                <p>1817 Farnum Road New York, NY 10022</p>
+                            </div>
+                            <div class="user-role">
+                              <p><strong>Orlando Wheeler</strong></p>
+                              <p>Consultant</p>
+                            </div>
+                          </div>
+                      </div>
+                  </ng-template>
+                  <ng-template ngbSlide>
+                    <div class="user-data-outer">
+                        <p class="date-outer">
+                            Feb 24, 2019 11:30 a.m. - Feb 25, 2019 12:30 p.m.
+                        </p>
+                        <div class="d-flex justify-content-between">
+                          <div class="user-data">
+                              <p class="heading">DD-IO-DRM187945-54</p>
+                              <p><strong>Maria Brown,</strong> Owner</p>
+                              <p>1941 Wayback Lane Manhattan, NY 10107</p>
+                          </div>
+                          <div class="user-role">
+                            <p><strong>Jean Sampson</strong></p>
+                            <p>Speaker</p>
+                          </div>
+                        </div>
+                      </div>
+                    </ng-template>
+                </ngb-carousel>
+              </div>
           </div>
       </div>
   </div>
