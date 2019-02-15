@@ -5,6 +5,8 @@ import { UserService } from '../../shared/services/user.service';
 import { HttpErrorResponse} from '@angular/common/http';
 import { EmailValidator, NameValidator } from '../../shared/validators/formValidator';
 import { NgxSpinnerService } from 'ngx-spinner';
+import { AlertService } from '../../shared/component/alert/alert.service';
+
 
 @Component({
   selector: 'app-signup',
@@ -16,7 +18,11 @@ export class SignupComponent implements OnInit {
   public signUpForm: FormGroup;
   public isVerifiedEmail: boolean = false;
 
-  constructor(public fb: FormBuilder, public router: Router, public userService: UserService, public spinner: NgxSpinnerService ) {
+  constructor(public fb: FormBuilder,
+    public router: Router,
+    public userService: UserService,
+    public spinner: NgxSpinnerService,
+    public alertService: AlertService) {
     this.signUpForm = fb.group({
       firstName: ['', Validators.compose([Validators.required, NameValidator])],
       lastName: ['', Validators.compose([Validators.required, NameValidator])],
@@ -34,10 +40,14 @@ export class SignupComponent implements OnInit {
   }
 
   registerUserHandler(): void {
+    this.spinner.show();
     this.userService.registerUser(this.signUpForm.value).subscribe((data: any) => {
-        this.router.navigate(['/user/signin']);
-      alert(data.message);
+      this.spinner.hide();
+
+      this.alertService.confirm('Event Manager', data.message).then((confirmed) =>  this.router.navigate(['/user/signin']))
+        .catch(() => console.log('error added '));
     }, (err: HttpErrorResponse) => {
+        this.spinner.hide();
         console.log('error' + err );
     });
   }
