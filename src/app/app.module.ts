@@ -11,8 +11,7 @@ import { PageNotFoundComponent } from './page-not-found/page-not-found.component
 import { AuthInterceptor } from './shared/auth/auth.interceptors';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { AlertComponent } from './shared/component/alert/alert.component';
-import { AlertService } from './shared/component/alert/alert.service'
-
+import { AlertService } from './shared/component/alert/alert.service';
 @NgModule({
   declarations: [
     AppComponent,
