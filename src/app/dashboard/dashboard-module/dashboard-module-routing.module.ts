@@ -5,11 +5,12 @@ import {ProfileComponent} from '../profile/profile.component';
 import {AboutComponent} from '../about/about.component';
 import {LogoutComponent} from '../logout/logout.component';
 import {DashboardComponent} from '../dashboard.component';
-
+import {AuthGuardService} from '../../shared/auth/auth-guard.service';
 const routes: Routes = [
   {
     path: '',
     component: DashboardComponent,
+    canActivate: [AuthGuardService],
     children : [
       {
         path: '',
@@ -22,11 +23,13 @@ const routes: Routes = [
       },
       {
         path: 'profile',
-        component: ProfileComponent
+        component: ProfileComponent,
+        canActivate: [AuthGuardService],
       },
       {
         path: 'about',
-        component: AboutComponent
+        component: AboutComponent,
+        canActivate: [AuthGuardService],
       },
       {
         path: 'logout',
@@ -34,8 +37,6 @@ const routes: Routes = [
       }
     ]
 }
-  // { path: 'home', component: HomeComponent},
-  // { path: 'profile', component: ProfileComponent}
 ];
 
 
