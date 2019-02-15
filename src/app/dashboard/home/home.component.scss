@@ -228,11 +228,15 @@
         background-color: $sky-blue;
     }
 }
+.heading {
+    color:$orange;
+    font-weight: 100;
+}
 .slider-outer {
     position: relative;
     width: 100%;
     display: block;
-    background: #fff;
+    background: $white;
     @include border-radius(5px);
     .indicator {
         position: relative;
@@ -243,16 +247,16 @@
         outline: none;
         .carousel-indicators {
             margin:0;
-            border-top: 1px solid #ccc;
+            border-top: 1px solid $gray-border;
             padding-top: 5px;
             min-height: 40px;
             li {
-                background-color: #333;
+                background-color: $gray-border;
                 width: 8px;
                 height: 8px;
                 border-radius:100%;
                 &.active {
-                    background-color: #f8981d;
+                    background-color: $orange;
                 }
             }
         }
@@ -271,7 +275,7 @@
             display: flex;
             width: 25px;
             height: 25px;
-            border: 2px solid #333;
+            border: 2px solid $gray-border;
             border-radius: 50%;
             align-items: center;
             justify-content: center;
@@ -281,8 +285,8 @@
                 display: inline-block;
                 width: 8px;
                 height: 8px;
-                border-top: 2px solid #333;
-                border-right: 2px solid #333;
+                border-top: 2px solid $gray-border;
+                border-right: 2px solid $gray-border;
                 -webkit-transform: rotate(-135deg);
                 transform: rotate(-135deg);
                 margin-left: 3px;
@@ -302,13 +306,9 @@
         width: 100%;
         margin-bottom: 3rem;
         overflow: inherit;
-    }
+    }    
     .user-data-outer {
-        text-align: left;
-        .heading {
-            color: #f8981d;
-            font-weight: 100;
-        }
+        text-align: left;        
         p {
             margin:0;
             &.date-outer {
@@ -316,13 +316,89 @@
             }
         }
         .user-data {
-            width:50%;
+            width:60%;
             padding-right:2rem;
-            border-right:1px solid #ccc;
+            border-right:1px solid $gray-border;
         }
         .user-role {
-            width:50%;
+            width:40%;
             padding-left:2rem;
+        }
+    }
+}
+.custom-btn {
+    border:1px solid $orange;
+}
+.calender-cls {
+    background-color:$white;
+    padding:1rem;
+    .cal-header-outer {
+        min-height: 35px;
+        border-bottom: 1px solid $gray-border;
+        padding-bottom: .5rem;
+        margin-bottom: 2rem;
+    }
+    .jqx-widget-content {
+        border: 0;
+    }
+    .jqx-widget-header {
+        background: transparent;
+    }
+    .jqx-calendar-cell-specialDate {
+        color: $orange !important;
+    }
+    .jqx-calendar-cell-specialDate {
+        background-color: transparent;
+        border: 0;
+        position: relative;
+        &:after {
+            content: '';
+            background: $orange;
+            height: 5px;
+            width: 5px;
+            border-radius: 5px;
+            position: absolute;
+            transform: translate(-10px,25px);
+        }
+    }    
+    /* calander time line css */
+    .timeline-unit-outer {
+        display: flex;
+        justify-content: space-between;
+        flex-direction: column;
+        height: 100%;
+    }
+    .timeline-unit {
+        height: 100%;
+        border-left: .1rem solid $orange;
+        position: relative;
+        padding-left: 2rem;
+        display: flex;
+        align-items: center;
+        font-size: 1rem;
+    }
+    .timeline-flag {
+        position: absolute;
+        top: 30%;
+        left: -1.1rem;
+        transform: translate(0, -50%);
+        width: 2rem;
+        height: 2rem;
+        border-radius: 50%;
+        border: .1rem solid $orange;
+        z-index: 1;
+    }
+    .timeline-flag-full {
+        border: 2px solid $orange;
+        background: $white;
+        text-align: center;
+        font-size: 20px;
+        color: #8c8c8c;
+    }
+    .timeline-data {
+        color: #8c8c8c;
+        p {
+            margin:0;
         }
     }
 }

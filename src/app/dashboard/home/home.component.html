@@ -1,15 +1,39 @@
-<div class="row home-header">
-  <span> CALENDER </span> <button value="Create Event">+ Create Event</button>
-</div>
-<div class="row">
-    <div class="col-lg-6 calender-cls">
-        <div class="card-outer justify-content-center">
-          <jqxCalendar [width]="300" [height]="300" (onChange)="myCalendarEvent($event)" #eventCalender></jqxCalendar>
+<div class="calender-cls card-outer">
+    <div class="d-flex align-items-center justify-content-between cal-header-outer">
+        <span> CALENDER </span>
+        <button value="Create Event" class="btn custom-btn">+ Create Event</button>
+    </div>
+    <div class="row">
+        <div class="col-lg-6 justify-content-center">
+            <jqxCalendar [height]="300" (onChange)="myCalendarEvent($event)" #eventCalender></jqxCalendar>
         </div>
-        </div>
-    <div class="col-lg-6">
-        <div class="card-outer">
-          <div #calenderPanel> NO data here... </div>
+        <div class="col-lg-6">
+          <div #calenderPanel class="timeline-unit-outer">
+              <div class="timeline-unit" *ngFor="let index of selectedDateEvents">
+                  <div class="timeline-flag timeline-flag-full">✓</div>
+                  <div class="timeline-data">
+                    <p>{{ index.StartTime }}</p>
+                    <p class="heading">{{ index.EventType }} ------ </p>
+                    <p>{{ index.EventCode }}</p>
+                  </div>
+              </div>
+              <!-- <div class="timeline-unit">
+                  <div class="timeline-flag timeline-flag-full">✓</div>
+                  <div class="timeline-data">
+                    <p>11:30 AM</p>
+                    <p class="heading">Lorem ipsum init sit amet</p>
+                    <p>Lorem ipsum init sit amet Lorem ipsum init sit amet</p>
+                  </div>
+              </div>
+              <div class="timeline-unit">
+                  <div class="timeline-flag timeline-flag-full">✓</div>
+                  <div class="timeline-data">
+                    <p>14:00 AM</p>
+                    <p class="heading">Lorem ipsum init sit amet</p>
+                    <p>Lorem ipsum init sit amet Lorem ipsum init sit amet</p>
+                  </div>
+              </div> -->
+          </div>
         </div>
     </div>
 </div>
@@ -18,7 +42,7 @@
       <div class="card-outer">
           <div class="d-flex justify-content-stretch">
               <div class="event-indicator violet">
-                <span>{{ draftCount }} 15</span> Upcoming Events
+                <span>{{ draftCount }}</span> Upcoming Events
               </div>
               <div class="slider-outer">
                 <ngb-carousel *ngIf="testArray" class="indicator">
@@ -85,7 +109,7 @@
       <div class="card-outer">
           <div class="d-flex justify-content-stretch">
               <div class="event-indicator sky-blue">
-                <span>12</span> Upcoming Events
+                <span>{{ pendingCount }}</span> Pending Events
               </div>
               <div class="slider-outer">
                 <ngb-carousel *ngIf="testArray" class="indicator">
