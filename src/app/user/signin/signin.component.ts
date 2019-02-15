@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, AfterViewInit, ChangeDetectionStrategy,Input } from '@angular/core';
 import { Validators, FormBuilder, FormGroup } from '@angular/forms';
 import { Router } from '@angular/router';
 import { UserService } from '../../shared/services/user.service';
@@ -7,20 +7,24 @@ import { AlertService } from '../../shared/component/alert/alert.service';
 import { NgxSpinnerService } from 'ngx-spinner';
 
 @Component({
+  changeDetection: ChangeDetectionStrategy.OnPush,
   selector: 'app-signin',
   templateUrl: './signin.component.html',
   styleUrls: ['./signin.component.scss']
 })
-export class SigninComponent implements OnInit {
+
+export class SigninComponent implements OnInit, AfterViewInit {
   signInForm: FormGroup;
-  constructor(public fb: FormBuilder,
+  constructor(
+    public fb: FormBuilder,
     public router: Router,
     public userService: UserService,
     public alertService: AlertService,
     public spinner: NgxSpinnerService) {
     this.signInForm = fb.group({
       userName: ['', [ Validators.required, Validators.email]],
-      password: ['', Validators.required]
+      password: ['', Validators.required],
+      rememberMeFlag : ['', []]
     });
   }
 
@@ -29,40 +33,53 @@ export class SigninComponent implements OnInit {
 
   login (): void {
     this.spinner.show();
-
     this.userService.userAuthentication(
       this.signInForm.value.userName,
       this.signInForm.value.password).subscribe((data: any) => {
-      console.log(data);
-      this.spinner.hide();
-      if (data.auth) {
-        const uData = {
-          userId: data.userId,
-          userToken: data.token
-        };
-        localStorage.setItem('userData', JSON.stringify(uData));
-        this.router.navigate(['/dashboard']);
-      } else {
-        this.alertService.confirm('Event Manager', data.message).then((confirmed) => console.log('User confirmed:', confirmed))
-        .catch(() => console.log('error added '));
-      }
-    },
-    (err: HttpErrorResponse) => {
-      this.spinner.hide();
-      if (err.error && err.error.message) {
-        this.alertService.confirm('Event Manager', err.error.message).then((confirmed) => console.log('User confirmed:', confirmed))
-        .catch(() => console.log('error added '))
-      } else {
-        this.alertService.confirm('Event Manager', err.message).then((confirmed) => console.log('User confirmed:', confirmed))
-        .catch(() => console.log('error added '));
-      }
+        this.spinner.hide();
+        if (data.auth) {
+          const uData = {
+            userId: data.userId,
+            userToken: data.token
+          };
+          localStorage.setItem('userData', JSON.stringify(uData));
+          this.router.navigate(['/dashboard']);
+        } else {
+          this.alertService.confirm('Event Manager', data.message).then((confirmed) => console.log('User confirmed:', confirmed))
+          .catch(() => console.log('error added '));
+        }
+    }, (err: HttpErrorResponse) => {
+        this.spinner.hide();
+        const errorMessage =  (err.error && err.error.message) ? err.error.message : (err.message) ? err.message : 'ERROR !! occured.';
+        this.alertService.confirm('Event Manager', errorMessage).then((confirmed) => console.log('User confirmed:', confirmed))
+          .catch(() => console.log('error added '));
     });
+  }
 
+  ngAfterViewInit () {
+      if (sessionStorage.getItem('usernameData')) {
+        const { username, password } = JSON.parse(sessionStorage.getItem('usernameData'));
+        this.signInForm.controls['userName'].setValue(username);
+        this.signInForm.controls['password'].setValue(password);
+      }
+  }
+
+  rememberMeHandler(): void {
+    if (this.signInForm.value.rememberMeFlag) {
+      const userObj = JSON.stringify({ 'username': this.signInForm.value.userName, 'password': this.signInForm.value.password });
+      sessionStorage.setItem('usernameData', userObj);
+    } else {
+      sessionStorage.removeItem('usernameData');
+    }
   }
 
   forgotPasswordHandler(): void {
     this.alertService.confirm('Event Manager', 'Work In Progress...')
     .then((confirmed) => console.log('User confirmed:', confirmed))
     .catch(() => console.log('User dismissed the dialog (e.g., by using ESC, clicking the cross icon, or clicking outside the dialog)'));
+  }
+
+  onInputChangeHandler (): void {
+    this.rememberMeHandler();
   }
 }
