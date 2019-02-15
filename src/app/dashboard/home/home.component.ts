@@ -21,7 +21,7 @@ export class HomeComponent implements OnInit, AfterViewInit {
   draftCount: Number = 0;
   pendingCount: Number = 0;
   eventData: any;
-  selectedDateEvents:any;
+  selectedDateEvents: Array<any> = [];
   testArray = [1, 2, 3];
   getDateArray: any;
   showNavigationArrows = false;
@@ -36,13 +36,7 @@ export class HomeComponent implements OnInit, AfterViewInit {
   }
   myCalendarEvent (event: any)  {
     const date = event.args.date;
-    const view = event.args.view;
-    const viewFrom = view.from;
-    const viewTo = view.to;
-    let t = this.eventData.filter((v) =>
-    (new Date(v.StartDate).getFullYear() === date.getFullYear()
-    && new Date(v.StartDate).getDay() === date.getDay()
-    && new Date(v.StartDate).getMonth() === date.getMonth()));
+    let filteredArray = [];
     const compareFn = (a, b) => {
       if (a.StartTime < b.StartTime) {
         return -1;
@@ -52,8 +46,13 @@ export class HomeComponent implements OnInit, AfterViewInit {
       }
       return 0;
     };
-
-    this.selectedDateEvents = t.sort(compareFn);
+    if (this.eventData && this.eventData.length > 0) {
+        filteredArray = this.eventData.filter((v) =>
+        (new Date(v.StartDate).getFullYear() === date.getFullYear()
+        && new Date(v.StartDate).getDate() === date.getDate()
+        && new Date(v.StartDate).getMonth() === date.getMonth()));
+    }
+    this.selectedDateEvents = (filteredArray && filteredArray.length > 0) ? filteredArray.sort(compareFn) : [];
   }
   ngAfterViewInit () {
     this.getAllEventsData();
@@ -81,7 +80,8 @@ export class HomeComponent implements OnInit, AfterViewInit {
           }
           if (dateArray.indexOf(v.StartDate)) {
             dateArray.push(v.StartDate);
-            this.eventCalender.addSpecialDate(new Date(v.StartDate), '' , '');
+            let d1 = new Date(v.StartDate);
+            this.eventCalender.addSpecialDate(d1, '' , 'Special Date1');
           }
          return [draft, pending, dateArray];
      }, [0, 0, []]);

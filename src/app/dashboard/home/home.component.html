@@ -5,7 +5,7 @@
     </div>
     <div class="row">
         <div class="col-lg-6 justify-content-center">
-            <jqxCalendar [height]="300" (onChange)="myCalendarEvent($event)" #eventCalender></jqxCalendar>
+            <jqxCalendar [height]="300" [enableTooltips]="true" (onChange)="myCalendarEvent($event)" #eventCalender></jqxCalendar>
         </div>
         <div class="col-lg-6">
           <div #calenderPanel class="timeline-unit-outer">
@@ -17,6 +17,7 @@
                     <p>{{ index.EventCode }}</p>
                   </div>
               </div>
+              <div *ngIf="!selectedDateEvents?.length > 0" class="timeline-unit  justify-content-center"><span>Events Not Found</span></div>
               <!-- <div class="timeline-unit">
                   <div class="timeline-flag timeline-flag-full">✓</div>
                   <div class="timeline-data">
