@@ -5,6 +5,8 @@ import { UserService } from '../../shared/services/user.service';
 import { HttpErrorResponse } from '@angular/common/http';
 import { AlertService } from '../../shared/component/alert/alert.service';
 import { NgxSpinnerService } from 'ngx-spinner';
+import { AuthService, GoogleLoginProvider, FacebookLoginProvider } from 'angular-6-social-login';
+
 
 @Component({
   changeDetection: ChangeDetectionStrategy.OnPush,
@@ -20,7 +22,8 @@ export class SigninComponent implements OnInit, AfterViewInit {
     private router: Router,
     private userService: UserService,
     private alertService: AlertService,
-    private spinner: NgxSpinnerService) {
+    private spinner: NgxSpinnerService,
+    private socialAuthService: AuthService) {
     this.signInForm = fb.group({
       userName: ['', [ Validators.required, Validators.email]],
       password: ['', Validators.required],
@@ -55,7 +58,20 @@ export class SigninComponent implements OnInit, AfterViewInit {
           .catch(() => console.log('error added '));
     });
   }
-
+  socialSignIn(socialPlatform: String): void {
+    alert(socialPlatform);
+    let socialPlatformProvider;
+    if ( socialPlatform === 'facebook') {
+      socialPlatformProvider = FacebookLoginProvider.PROVIDER_ID;
+    } else if (socialPlatform === 'google') {
+      socialPlatformProvider = GoogleLoginProvider.PROVIDER_ID;
+    }
+    this.socialAuthService.signIn(socialPlatformProvider).then(
+      (userData) => {
+        console.log(" sign in data : " , userData);
+      }
+    );
+  }
   ngAfterViewInit () {
       if (sessionStorage.getItem('usernameData')) {
         const { username, password } = JSON.parse(sessionStorage.getItem('usernameData'));

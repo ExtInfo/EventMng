@@ -12,12 +12,14 @@ import { AuthInterceptor } from './shared/auth/auth.interceptors';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { AlertComponent } from './shared/component/alert/alert.component';
 import { AlertService } from './shared/component/alert/alert.service';
+import { SocialLoginModule, AuthServiceConfig } from 'angular-6-social-login';
+import { getAuthServiceConfigs } from './shared/auth/social-congfig';
+
 @NgModule({
   declarations: [
     AppComponent,
     PageNotFoundComponent,
     AlertComponent
-
   ],
   imports: [
     BrowserModule,
@@ -25,6 +27,7 @@ import { AlertService } from './shared/component/alert/alert.service';
     BrowserAnimationsModule,
     HttpClientModule,
     NgxSpinnerModule,
+    SocialLoginModule,
     NgbModule.forRoot(),
     ...APP_IMPORTS
   ],
@@ -33,6 +36,9 @@ import { AlertService } from './shared/component/alert/alert.service';
     provide: HTTP_INTERCEPTORS,
     useClass: AuthInterceptor,
     multi: true
+  }, {
+    provide: AuthServiceConfig,
+    useFactory: getAuthServiceConfigs
   }],
   entryComponents: [AlertComponent],
   bootstrap: [AppComponent]
