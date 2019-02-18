@@ -99,13 +99,13 @@
                       <span class="input-group-text"><fa name="user"></fa></span>
                     </div>
                     <div class="checkbox d-flex justify-content-end" >
-                       <input matInput  class="form-control" type="text" formControlName="otpNum" value="enter otp"> <input class="input-otp-cls" type="button"  (click)="emailVerficationHandler()"value="Get OTP" >
+                       <input matInput  class="form-control" type="text" formControlName="otpNum" placeholder="enter otp"> <input class="input-otp-cls" type="button"  (click)="emailVerficationHandler()"value="Get OTP" >
                     </div>
                 </div>
 
             </div>
             <div fxLayoutAlign="center center" class="card-footer">
-                <input type="button" value="Signup" (click)="registerUserHandler()" class="btn float-right login_btn">
+                <input type="button" [disabled]="!signUpForm.valid" value="Submit" (click)="registerUserHandler()" class="btn float-right login_btn">
                 <div style="width:20px;float:right"></div>
                 <input type="button" value="Cancel" (click)="cancelSignupHandler()" class="btn float-right login_btn">
             </div>
