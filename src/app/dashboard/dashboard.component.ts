@@ -34,8 +34,10 @@ export class DashboardComponent implements OnInit {
         this.isNavTabClick = 'about';
         break;
       case 'logout' :
-        this.router.navigate(['/dashboard/logout']);
+       // this.router.navigate(['/dashboard/logout']);
+       localStorage.removeItem('userData');
         this.isNavTabClick = 'logout';
+        this.router.navigateByUrl('/');
         break;
     }
 
