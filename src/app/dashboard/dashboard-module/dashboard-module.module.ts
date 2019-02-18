@@ -15,7 +15,7 @@ import { DashboardModuleRoutingModule , DashboardRoutingComponenets} from './das
   imports: [
     CommonModule,
     DashboardModuleRoutingModule,
-    NgbModule
+    NgbModule.forRoot()
   ]
 })
 export class DashboardModuleModule { }

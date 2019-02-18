@@ -1,14 +1,14 @@
 <div class="calender-cls card-outer">
     <div class="d-flex align-items-center justify-content-between cal-header-outer">
         <span> CALENDER </span>
-        <button value="Create Event" class="btn custom-btn">+ Create Event</button>
+        <button value="Create Event" class="btn custom-btn" (click)="createEventHandler()">+ Create Event</button>
     </div>
     <div class="row">
         <div class="col-lg-6 justify-content-center">
-            <jqxCalendar [height]="300" (onChange)="myCalendarEvent($event)" #eventCalender></jqxCalendar>
+            <jqxCalendar [height]="300" (onViewChange)="calenderEventHandler($event)" (onChange)="calenderEventHandler($event)" #eventCalender></jqxCalendar>
         </div>
         <div class="col-lg-6">
-          <div #calenderPanel class="timeline-unit-outer">
+          <div #calenderPanel *ngIf="selectedDateEvents?.length > 0" class="timeline-unit-outer">
               <div class="timeline-unit" *ngFor="let index of selectedDateEvents">
                   <div class="timeline-flag timeline-flag-full">✓</div>
                   <div class="timeline-data">
@@ -18,6 +18,9 @@
                   </div>
               </div>
           </div>
+          <div *ngIf="!selectedDateEvents?.length > 0" class="event-no-data-cls d-flex align-items-center justify-content-center" >
+              <span class="justify-content-center"> Events Not Found....</span>
+            </div>
         </div>
     </div>
 </div>
@@ -29,9 +32,9 @@
                 <span>{{ draftCount.length }}</span> Draft Events
               </div>
               <div class="slider-outer d-flex justify-content-center">
-                <ngb-carousel *ngIf="draftCount" class="indicator" interval = 0 >
+                <ngb-carousel *ngIf="draftCount" class="indicator">
                     <ng-template *ngFor= "let eventObj of draftCount" ngbSlide>
-                        <!-- <div class="user-data-outer">
+                        <div class="user-data-outer">
                             <p class="date-outer">
                               {{ eventObj.StartDate | date : 'mediumDate' }} {{eventObj.StartTime }} - {{ eventObj.EndDate | date : 'mediumDate'}} {{eventObj.EndTime }}
                             </p>
@@ -46,22 +49,21 @@
                                 <p>Speaker</p>
                               </div>
                             </div>
-                        </div> -->
-                        <div> {{eventObj.Id}} </div>
+                          </div>
                     </ng-template>
-                  </ngb-carousel>
+                </ngb-carousel>
               </div>
           </div>
       </div>
   </div>
-  <!-- <div class="col-lg-6">
+  <div class="col-lg-6">
       <div class="card-outer">
           <div class="d-flex justify-content-stretch">
               <div class="event-indicator sky-blue">
                 <span>{{ pendingCount.length }}</span> Pending Events
               </div>
               <div class="slider-outer">
-                <ngb-carousel *ngIf="pendingCount" class="indicator" interval = 0>
+                <ngb-carousel *ngIf="pendingCount" class="indicator">
                     <ng-template *ngFor="let pendingObj of pendingCount" ngbSlide>
                         <div class="user-data-outer">
                             <p class="date-outer">
@@ -84,5 +86,5 @@
               </div>
           </div>
       </div>
-  </div> -->
+  </div>
 </div>

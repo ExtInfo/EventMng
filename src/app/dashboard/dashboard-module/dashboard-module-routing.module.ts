@@ -30,6 +30,10 @@ const routes: Routes = [
         path: 'about',
         component: AboutComponent,
         canActivate: [AuthGuardService],
+      }, {
+        path: 'create',
+        component: AboutComponent,
+        canActivate: [AuthGuardService],
       },
       {
         path: 'logout',

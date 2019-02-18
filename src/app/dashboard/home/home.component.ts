@@ -1,9 +1,10 @@
 import { Component, OnInit, ViewEncapsulation, ViewChild, AfterViewInit, ElementRef} from '@angular/core';
 import { BaseService } from '../home/base.service';
 import { HttpErrorResponse } from '@angular/common/http';
-import { NgbCarouselConfig } from '@ng-bootstrap/ng-bootstrap';
+import { NgbCarouselConfig, NgbCarousel } from '@ng-bootstrap/ng-bootstrap';
 import { jqxCalendarComponent } from 'jqwidgets-scripts/jqwidgets-ts/angular_jqxcalendar';
 import { NgxSpinnerService } from 'ngx-spinner';
+import { Router } from '@angular/router';
 
 
 @Component({
@@ -11,9 +12,9 @@ import { NgxSpinnerService } from 'ngx-spinner';
   encapsulation: ViewEncapsulation.None,
   templateUrl: './home.component.html',
   styleUrls: ['./home.component.scss'],
-  providers: [NgbCarouselConfig]
+  providers: [ NgbCarouselConfig, NgbCarousel ]
 })
-export class HomeComponent implements OnInit, AfterViewInit {
+export class HomeComponent implements OnInit, AfterViewInit{
   @ViewChild('eventCalender') eventCalender: jqxCalendarComponent;
   @ViewChild('calenderPanel') calenderPanel: ElementRef;
   draftCount: Array<any> = [];
@@ -24,16 +25,19 @@ export class HomeComponent implements OnInit, AfterViewInit {
   getDateArray: any;
   showNavigationArrows = false;
   showNavigationIndicators = false;
-  constructor(public baseService: BaseService, config: NgbCarouselConfig, public spinner: NgxSpinnerService) {
+  constructor(public baseService: BaseService, public config: NgbCarouselConfig,
+    private ngbCarousel: NgbCarousel, public spinner: NgxSpinnerService, private router: Router) {
       config.showNavigationArrows = true;
       config.showNavigationIndicators = true;
-   }
+      config.interval = 3000;
+    }
 
   ngOnInit() {
     this.spinner.show();
     this.getAllEventsData();
   }
-  myCalendarEvent (event: any)  {
+
+  calenderEventHandler (event: any)  {
     const date = event.args.date;
     const view = event.args.view;
     const viewFrom = view.from;
@@ -51,16 +55,15 @@ export class HomeComponent implements OnInit, AfterViewInit {
       }
       return 0;
     };
-
     this.selectedDateEvents = t.sort(compareFn);
   }
+
   ngAfterViewInit () {
-    this.spinner.hide();
+    setInterval( () => this.spinner.hide() , 3000);
   }
 
   getAllEventsData(): void {
     if (localStorage.userData) {
-
         console.log('userData is here' + JSON.stringify(JSON.parse(localStorage.userData)));
         const uData = JSON.parse(localStorage.userData);
         this.baseService.loadDashboard(uData.userId, uData.userToken).subscribe((eventRes: any) => {
@@ -70,6 +73,10 @@ export class HomeComponent implements OnInit, AfterViewInit {
           alert(err);
         });
     }
+  }
+
+  createEventHandler(): void {
+    this.router.navigate(['/dashboard/create']);
   }
   eventDashboardHandler (events: any): void {
    [this.draftCount, this.pendingCount, this.getDateArray] = events.reduce(([draft, pending, dateArray], v) => {
