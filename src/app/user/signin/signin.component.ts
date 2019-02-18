@@ -14,13 +14,13 @@ import { NgxSpinnerService } from 'ngx-spinner';
 })
 
 export class SigninComponent implements OnInit, AfterViewInit {
-  signInForm: FormGroup;
+  public signInForm: FormGroup;
   constructor(
-    public fb: FormBuilder,
-    public router: Router,
-    public userService: UserService,
-    public alertService: AlertService,
-    public spinner: NgxSpinnerService) {
+    private fb: FormBuilder,
+    private router: Router,
+    private userService: UserService,
+    private alertService: AlertService,
+    private spinner: NgxSpinnerService) {
     this.signInForm = fb.group({
       userName: ['', [ Validators.required, Validators.email]],
       password: ['', Validators.required],

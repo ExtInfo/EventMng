@@ -18,16 +18,14 @@
 
             <input   type="text" formControlName="userName" class="form-control" placeholder="username" (input)="onInputChangeHandler()">
           </div>
-          <div class="input-error-cls red-color-cls" *ngIf="signInForm.get('userName').touched
-          && signInForm.get('userName').invalid">Please enter valid username.</div>
+          <mat-error *ngIf="signInForm.get('userName').touched && signInForm.get('userName').invalid">Please enter valid username.</mat-error>
           <div [ngClass] = "{'input-error-cls' :(!signInForm.get('password').touched || signInForm.get('password').valid), 'input-group' : true,'form-group':true}">
             <div class="input-group-prepend">
               <span class="input-group-text"><fa name="key"></fa></span>
             </div>
             <input type="password" formControlName="password" class="form-control" placeholder="password" (input)="onInputChangeHandler()" >
           </div>
-          <div class="input-error-cls red-color-cls" *ngIf="signInForm.get('password').touched
-          && signInForm.get('password').invalid">Please enter valid password.</div>
+          <mat-error *ngIf="signInForm.get('password').touched && signInForm.get('password').invalid">Please enter valid username.</mat-error>
           <div class="row align-items-center remember">
             <input (change)="rememberMeHandler()" formControlName="rememberMeFlag" type="checkbox">Remember Me
           </div>
