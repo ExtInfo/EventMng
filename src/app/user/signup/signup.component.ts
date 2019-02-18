@@ -18,11 +18,11 @@ export class SignupComponent implements OnInit {
   public signUpForm: FormGroup;
   public isVerifiedEmail: boolean = false;
 
-  constructor(public fb: FormBuilder,
-    public router: Router,
-    public userService: UserService,
-    public spinner: NgxSpinnerService,
-    public alertService: AlertService) {
+  constructor(private fb: FormBuilder,
+    private router: Router,
+    private userService: UserService,
+    private spinner: NgxSpinnerService,
+    private alertService: AlertService) {
     this.signUpForm = fb.group({
       firstName: ['', Validators.compose([Validators.required, NameValidator])],
       lastName: ['', Validators.compose([Validators.required, NameValidator])],
@@ -43,7 +43,6 @@ export class SignupComponent implements OnInit {
     this.spinner.show();
     this.userService.registerUser(this.signUpForm.value).subscribe((data: any) => {
       this.spinner.hide();
-
       this.alertService.confirm('Event Manager', data.message).then((confirmed) =>  this.router.navigate(['/user/signin']))
         .catch(() => console.log('error added '));
     }, (err: HttpErrorResponse) => {
@@ -64,7 +63,6 @@ export class SignupComponent implements OnInit {
       }, (err: HttpErrorResponse) => {
         this.signUpForm.get('email').reset();
         this.isVerifiedEmail = false;
-        alert('dddd');
     });
   }
 
