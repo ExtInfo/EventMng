@@ -42,7 +42,7 @@ export class SigninComponent implements OnInit, AfterViewInit {
         this.spinner.hide();
         if (data.auth) {
           const uData = {
-            userId: data.userId,
+            userId: data.userData.userId,
             userToken: data.token
           };
           localStorage.setItem('userData', JSON.stringify(uData));

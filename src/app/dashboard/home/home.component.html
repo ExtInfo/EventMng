@@ -13,8 +13,8 @@
                   <div class="timeline-flag timeline-flag-full">✓</div>
                   <div class="timeline-data">
                     <p>{{ index.StartTime }}</p>
-                    <p class="heading">{{ index.EventType }} ------ </p>
-                    <p>{{ index.EventCode }}</p>
+                    <p class="heading">{{ index.EventCode }}</p>
+                    <p><strong>{{ index.FirstName }} {{ index.LastName }}</strong>, Speaker </p>
                   </div>
               </div>
           </div>
@@ -31,8 +31,8 @@
               <div class="event-indicator violet">
                 <span>{{ draftCount.length }}</span> Draft Events
               </div>
-              <div class="slider-outer d-flex justify-content-center">
-                <ngb-carousel *ngIf="draftCount" class="indicator">
+              <div class="slider-outer">
+                <ngb-carousel *ngIf="draftCount.length > 0" class="indicator" interval="999999">
                     <ng-template *ngFor= "let eventObj of draftCount" ngbSlide>
                         <div class="user-data-outer">
                             <p class="date-outer">
@@ -45,7 +45,7 @@
                                   <p>{{eventObj.AddressLine1}} {{eventObj.AddressLine2}} {{eventObj.City}}, {{eventObj.State}} {{eventObj.Country}} {{eventObj.PostalCode}}</p>
                               </div>
                               <div class="user-role">
-                                <p><strong>Orlando Wheeler</strong></p>
+                                <p><strong *ngIf="eventObj.Role === 'Speaker';else blankSpeaker">{{eventObj.FirstName}} {{eventObj.LastName}}, </strong></p>
                                 <p>Speaker</p>
                               </div>
                             </div>
@@ -63,7 +63,7 @@
                 <span>{{ pendingCount.length }}</span> Pending Events
               </div>
               <div class="slider-outer">
-                <ngb-carousel *ngIf="pendingCount" class="indicator">
+                <ngb-carousel *ngIf="pendingCount.length > 0" class="indicator" interval="999999">
                     <ng-template *ngFor="let pendingObj of pendingCount" ngbSlide>
                         <div class="user-data-outer">
                             <p class="date-outer">
@@ -76,7 +76,7 @@
                                   <p>{{pendingObj.AddressLine1}} {{pendingObj.AddressLine2}} {{pendingObj.City}}, {{pendingObj.State}} {{pendingObj.Country}} {{pendingObj.PostalCode}}</p>
                               </div>
                               <div class="user-role">
-                                <p><strong>Jean Sampson</strong></p>
+                                <p><strong *ngIf="pendingObj.Role === 'Speaker';else blankSpeaker">{{pendingObj.FirstName}} {{pendingObj.LastName}}, </strong></p>
                                 <p>Speaker</p>
                               </div>
                             </div>
@@ -88,3 +88,4 @@
       </div>
   </div>
 </div>
+<ng-template #blankSpeaker><strong> - - </strong> </ng-template>

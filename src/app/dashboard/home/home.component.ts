@@ -29,7 +29,7 @@ export class HomeComponent implements OnInit, AfterViewInit{
     private ngbCarousel: NgbCarousel, public spinner: NgxSpinnerService, private router: Router) {
       config.showNavigationArrows = true;
       config.showNavigationIndicators = true;
-      config.interval = 3000;
+      config.interval = 0;
     }
 
   ngOnInit() {
@@ -59,7 +59,7 @@ export class HomeComponent implements OnInit, AfterViewInit{
   }
 
   ngAfterViewInit () {
-    setInterval( () => this.spinner.hide() , 3000);
+    setInterval( () => this.spinner.hide() , 0);
   }
 
   getAllEventsData(): void {
