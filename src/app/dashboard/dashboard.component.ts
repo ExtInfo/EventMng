@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { AlertService } from '../shared/component/alert/alert.service';
 @Component({
   selector: 'app-dashboard',
   templateUrl: './dashboard.component.html',
@@ -10,13 +11,16 @@ export class DashboardComponent implements OnInit {
   isHidden: boolean;
   isNavTabClick: string;
 
-  constructor(public router: Router) {
+  constructor(
+    public router: Router,
+    private alertService: AlertService
+    ) {
     this.isHidden = true;
     this.isNavTabClick = 'home';
   }
 
   ngOnInit() {
-    this.router.navigate(['/dashboard/home']);
+    //this.router.navigate(['/dashboard/home']);
   }
 
   OnNavTabClick(tabName: string) {
@@ -34,11 +38,18 @@ export class DashboardComponent implements OnInit {
         this.isNavTabClick = 'about';
         break;
       case 'logout' :
-       // this.router.navigate(['/dashboard/logout']);
-       localStorage.removeItem('userData');
-        this.isNavTabClick = 'logout';
-        this.router.navigateByUrl('/');
-        break;
+
+      this.alertService.confirm('Event Manager', 'Are you sure you want to log out ?').then((confirmed) => {
+        console.log('User confirmed:', confirmed);
+        if (confirmed) {
+          localStorage.removeItem('userData');
+          const backlen = history.length;
+          history.go(-backlen);
+          window.location.href = '/';
+          this.isNavTabClick = 'logout';
+        }
+      }).catch(() => console.log('error added '));
+       break;
     }
 
   }
