@@ -42,7 +42,7 @@
                               <div class="user-data">
                                   <p class="heading">{{ eventObj.EventCode }}</p>
                                   <p><strong>{{eventObj.User.FirstName}} {{eventObj.User.LastName}},</strong> Owner</p>
-                                  <p *ngIf="eventObj.Locations.length > 0; else blankSpeaker">{{eventObj.Locations[0].Address.AddressLine1}} {{eventObj.Locations[0].Address.AddressLine2}} {{eventObj.Locations[0].Address.City}}, {{eventObj.Locations[0].Address.State}} {{eventObj.Locations[0].Address.Country}} {{eventObj.Locations[0].Address.PostalCode}}</p>
+                                  <p *ngIf="eventObj.Locations.length > 0; else blankSpeaker">{{eventObj.Locations[0].AddressLine1}} {{eventObj.Locations[0].AddressLine2}} {{eventObj.Locations[0].City}}, {{eventObj.Locations[0].State}} {{eventObj.Locations[0].Country}} {{eventObj.Locations[0].PostalCode}}</p>
                               </div>
                               <div class="user-role">
                                 <p><strong *ngIf="eventObj.Participants.length > 0 && eventObj.Participants[0].Role === 'Speaker';else blankSpeaker">{{eventObj.Participants[0].FirstName}} {{eventObj.Participants[0].LastName}}, </strong></p>
@@ -73,7 +73,7 @@
                               <div class="user-data">
                                   <p class="heading">{{ pendingObj.EventCode }}</p>
                                   <p><strong>{{pendingObj.User.FirstName}} {{pendingObj.User.LastName}},</strong> Owner</p>
-                                  <p *ngIf="pendingObj.Locations.length > 0; else blankSpeaker">{{pendingObj.Locations[0].Address.AddressLine1}} {{pendingObj.Locations[0].Address.AddressLine2}} {{pendingObj.Locations[0].Address.City}}, {{pendingObj.Locations[0].Address.State}} {{pendingObj.Locations[0].Address.Country}} {{pendingObj.Locations[0].Address.PostalCode}}</p>
+                                  <p *ngIf="pendingObj.Locations.length > 0; else blankSpeaker">{{pendingObj.Locations[0].AddressLine1}} {{pendingObj.Locations[0].AddressLine2}} {{pendingObj.Locations[0].City}}, {{pendingObj.Locations[0].State}} {{pendingObj.Locations[0].Country}} {{pendingObj.Locations[0].PostalCode}}</p>
                               </div>
                               <div class="user-role">
                                 <p><strong *ngIf="pendingObj.Participants.length > 0 && pendingObj.Participants[0].Role === 'Speaker';else blankSpeaker">{{pendingObj.Participants[0].FirstName}} {{pendingObj.Participants[0].LastName}}, </strong></p>
